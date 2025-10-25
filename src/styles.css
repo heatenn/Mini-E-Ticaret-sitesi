@@ -1,0 +1,75 @@
+/* Base reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: #111827; background: #f9fafb; }
+
+/* Design tokens */
+:root {
+    --container: 1100px;
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: .75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+
+    --radius: 10px;
+    --shadow-1: 0 2px 8px rgba(0,0,0,.06);
+
+    --brand: #2563eb;
+    --brand-600: #1d4ed8;
+    --bg: #ffffff;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+}
+
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--space-4); }
+
+.site-header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding-block: var(--space-4); }
+.logo { margin: 0; font-size: 1.25rem; }
+
+.layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--space-8); padding-block: var(--space-8); }
+
+@media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .cart { position: fixed; left: 0; right: 0; bottom: -100%; max-height: 80vh; border-top-left-radius: var(--radius); border-top-right-radius: var(--radius); transition: bottom .25s ease; }
+    .cart[data-open] { bottom: 0; }
+}
+
+.section-title { margin: 0 0 var(--space-4); font-size: 1.25rem; }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-6); }
+.product-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-1); overflow: hidden; display: flex; flex-direction: column; }
+.product-card img { width: 100%; height: 160px; object-fit: cover; background: #f3f4f6; }
+.product-card .content { padding: var(--space-4); display: grid; gap: var(--space-3); }
+.product-card .title { margin: 0; font-size: 1rem; }
+.product-card .price { color: var(--brand); font-weight: 600; }
+
+.btn { appearance: none; border: 1px solid var(--border); background: var(--bg); color: #111827; padding: .6rem .9rem; border-radius: .6rem; cursor: pointer; transition: .15s ease-in-out; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-1); }
+.btn:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-primary { background: var(--brand); border-color: var(--brand); color: white; }
+.btn-primary:hover { background: var(--brand-600); border-color: var(--brand-600); }
+.btn-ghost { background: transparent; }
+
+.cart { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-1); padding: var(--space-4); height: fit-content; position: sticky; top: calc(var(--space-8) + 60px); }
+.cart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); }
+.cart-items { display: grid; gap: var(--space-3); max-height: 40vh; overflow: auto; padding-right: 4px; }
+.cart-item { display: grid; grid-template-columns: 56px 1fr auto; gap: var(--space-3); align-items: center; border-bottom: 1px dashed var(--border); padding-bottom: var(--space-3); }
+.cart-item img { width: 56px; height: 56px; object-fit: cover; border-radius: .5rem; background: #f3f4f6; }
+.cart-item .meta { display: grid; gap: 2px; }
+.cart-item .title { margin: 0; font-size: .95rem; }
+.cart-item .qty { color: var(--muted); font-size: .85rem; }
+.cart-item .price { font-weight: 600; }
+.cart-footer { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+.cart-total { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3); border: 1px solid var(--border); border-radius: .6rem; background: #fafafa; }
+
+/* Backdrop (mobile only visible when cart open) */
+.backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.cart[data-open] ~ .backdrop { opacity: 1; pointer-events: auto; }
+
+/* Focus styles and helpers */
+.btn:focus { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.muted { color: var(--muted); }
+

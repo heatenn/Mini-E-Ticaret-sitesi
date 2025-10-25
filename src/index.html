@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mini E-Ticaret</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="logo">Mini E-Ticaret</h1>
+            <nav class="nav">
+                <button id="open-cart" class="btn btn-primary" aria-controls="cart" aria-expanded="false">Sepet (0)</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container layout">
+        <section class="products" aria-labelledby="products-title">
+            <h2 id="products-title" class="section-title">Ürünler</h2>
+            <div id="product-list" class="product-grid" role="list">
+                <!-- JS ile ürün kartları basılacak -->
+            </div>
+        </section>
+
+        <aside id="cart" class="cart" aria-labelledby="cart-title" aria-live="polite">
+            <div class="cart-header">
+                <h2 id="cart-title" class="section-title">Sepet</h2>
+                <button id="close-cart" class="btn btn-ghost" aria-label="Sepeti kapat">✕</button>
+            </div>
+            <div id="cart-items" class="cart-items" role="list">
+                <!-- JS ile sepet öğeleri basılacak -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Toplam:</span>
+                    <strong id="cart-total">₺0,00</strong>
+                </div>
+                <div class="cart-actions">
+                    <button id="clear-cart" class="btn btn-ghost">Sepeti Temizle</button>
+                    <button id="checkout" class="btn btn-primary" disabled>Satın Al</button>
+                </div>
+            </div>
+        </aside>
+        <div id="backdrop" class="backdrop" hidden></div>
+    </main>
+
+    <!-- Veri ve modüller: Sırayla yüklenir -->
+    <script src="./data/products.js"></script>
+    <script src="./modules/cart.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
+
